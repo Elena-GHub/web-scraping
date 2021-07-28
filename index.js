@@ -18,5 +18,23 @@ const puppeteer = require("puppeteer");
     )
   );
 
-  console.log(urls);
+  await page.goto(urls[0]);
+  const houseDetails = await page.evaluate(() => {
+    const housePictures = [
+      ...document.querySelectorAll(".CasaVista__fotos img"),
+    ].map((img) => img.src);
+
+    const houseTitle = document.querySelector(".CasaVista__titulo").innerText;
+    const houseLocation = document.querySelector(
+      ".CasaVista__titulo + div"
+    ).innerText;
+
+    return {
+      housePictures,
+      houseTitle,
+      houseLocation,
+    };
+  });
+
+  console.log(houseDetails);
 })();
