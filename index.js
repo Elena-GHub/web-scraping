@@ -32,7 +32,7 @@ const puppeteer = require("puppeteer");
       .querySelector(".CasaVista__precio")
       .innerText.replace(/[^0-9]/g, ""));
     
-      const houseRooms = [
+      const houseLayout = [
       ...document.querySelectorAll(".CasaVista__cuartos span"),
     ].reduce((cumulator, room) => {
       const [roomQuantity, roomName] = room.innerText.split(' ');
@@ -46,7 +46,7 @@ const puppeteer = require("puppeteer");
       houseTitle,
       houseLocation,
       housePrice,
-      houseRooms
+      houseLayout
     };
   });
 
