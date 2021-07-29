@@ -28,25 +28,34 @@ const puppeteer = require("puppeteer");
     const houseLocation = document.querySelector(
       ".CasaVista__titulo + div"
     ).innerText;
-    const housePrice = Number(document
-      .querySelector(".CasaVista__precio")
-      .innerText.replace(/[^0-9]/g, ""));
-    
-      const houseLayout = [
+    const housePrice = Number(
+      document
+        .querySelector(".CasaVista__precio")
+        .innerText.replace(/[^0-9]/g, "")
+    );
+
+    const houseLayout = [
       ...document.querySelectorAll(".CasaVista__cuartos span"),
     ].reduce((cumulator, room) => {
-      const [roomQuantity, roomName] = room.innerText.split(' ');
+      const [roomQuantity, roomName] = room.innerText.split(" ");
       cumulator[roomName] = Number(roomQuantity);
 
-      return cumulator
-    }, {})
+      return cumulator;
+    }, {});
 
     const houseServices = [
-      ...document.querySelectorAll(".CasaVista__extras")].map((node) => node.innerText.toLowerCase());
-    
-    const houseRatingStars = Number(document.querySelector('.Opiniones__numero-de-estrellas').innerText);
+      ...document.querySelectorAll(".CasaVista__extras"),
+    ].map((node) => node.innerText.toLowerCase());
 
-    const houseReviewNumber = Number(document.querySelector('.Opiniones__numero-de-opiniones').innerText.replace(/[^0-9]/g, ""));
+    const houseRatingStars = Number(
+      document.querySelector(".Opiniones__numero-de-estrellas").innerText
+    );
+
+    const houseReviewNumber = Number(
+      document
+        .querySelector(".Opiniones__numero-de-opiniones")
+        .innerText.replace(/[^0-9]/g, "")
+    );
 
     return {
       housePictures,
@@ -57,7 +66,7 @@ const puppeteer = require("puppeteer");
       houseServices,
       houseRatingStars,
       houseReviewNumber,
-      url: window.location.href
+      url: window.location.href,
     };
   });
 
