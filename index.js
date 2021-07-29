@@ -41,12 +41,16 @@ const puppeteer = require("puppeteer");
       return cumulator
     }, {})
 
+    const houseServices = [
+      ...document.querySelectorAll(".CasaVista__extras")].map((node) => node.innerText.toLowerCase());
+
     return {
       housePictures,
       houseTitle,
       houseLocation,
       housePrice,
-      houseLayout
+      houseLayout,
+      houseServices
     };
   });
 
