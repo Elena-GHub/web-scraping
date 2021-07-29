@@ -28,11 +28,25 @@ const puppeteer = require("puppeteer");
     const houseLocation = document.querySelector(
       ".CasaVista__titulo + div"
     ).innerText;
+    const housePrice = Number(document
+      .querySelector(".CasaVista__precio")
+      .innerText.replace(/[^0-9]/g, ""));
+    
+      const houseRooms = [
+      ...document.querySelectorAll(".CasaVista__cuartos span"),
+    ].reduce((cumulator, room) => {
+      const [roomQuantity, roomName] = room.innerText.split(' ');
+      cumulator[roomName] = Number(roomQuantity);
+
+      return cumulator
+    }, {})
 
     return {
       housePictures,
       houseTitle,
       houseLocation,
+      housePrice,
+      houseRooms
     };
   });
 
