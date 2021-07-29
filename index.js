@@ -43,6 +43,10 @@ const puppeteer = require("puppeteer");
 
     const houseServices = [
       ...document.querySelectorAll(".CasaVista__extras")].map((node) => node.innerText.toLowerCase());
+    
+    const houseRatingStars = Number(document.querySelector('.Opiniones__numero-de-estrellas').innerText);
+
+    const houseReviewNumber = Number(document.querySelector('.Opiniones__numero-de-opiniones').innerText.replace(/[^0-9]/g, ""));
 
     return {
       housePictures,
@@ -50,7 +54,10 @@ const puppeteer = require("puppeteer");
       houseLocation,
       housePrice,
       houseLayout,
-      houseServices
+      houseServices,
+      houseRatingStars,
+      houseReviewNumber,
+      url: window.location.href
     };
   });
 
