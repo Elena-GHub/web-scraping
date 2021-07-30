@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
+const { saveHouses } = require("./saveToDb");
 
 (async () => {
   console.log('Empezando a "escrapear"...');
@@ -102,8 +103,12 @@ const puppeteer = require("puppeteer");
     houses.push(houseDetails);
   }
 
-  const data = JSON.stringify(houses);
-  fs.writeFileSync(path.join(__dirname, "houses.json"), data);
+  // const data = JSON.stringify(houses);
+  // fs.writeFileSync(path.join(__dirname, "houses.json"), data);
+
+  await saveHouses(houses);
+
+  console.log("Houses successfully saved");
 
   await browser.close();
   process.exit();
