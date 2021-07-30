@@ -50,7 +50,7 @@ const { saveHouses } = require("./saveToDb");
       }, {});
 
       const houseServices = [
-        ...document.querySelectorAll(".CasaVista__extras"),
+        ...document.querySelectorAll(".CasaVista__extra"),
       ].map((node) => node.innerText.toLowerCase());
 
       const houseRatingStars = Number(
